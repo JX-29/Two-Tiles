@@ -1,0 +1,27 @@
+@import "base/variables";
+
+*,*:before,*:after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+html,body {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+
+
+@import "blocks/body";
+@import "blocks/container";
+@import "blocks/tile";
+@import "blocks/tutotial";

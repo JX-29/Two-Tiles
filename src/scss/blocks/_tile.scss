@@ -1,0 +1,97 @@
+.tile {
+  perspective: 1000;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  border-radius: $tile-border-radius;
+  width: calc(25% - 15px);
+  height: calc(25% - 15px);
+  &_selected {
+    .tile__bottom {
+      transform: rotateY(0deg);
+    }
+    .tile__top {
+      transform: rotateY(180deg);
+    }
+    .vertical.tile .tile__bottom {
+      transform: rotateX(0deg);
+    }
+
+    .vertical.tile .tile__top {
+      transform: rotateX(180deg);
+    }
+    transform: translateY(8px);
+  }
+  &_disappear {
+    opacity: 0;
+    visibility: hidden;
+    .tile__bottom {
+      position: relative;
+    }
+  }
+  &:last-child {
+    margin-bottom: 0px;
+    margin-right: 0px;
+  }
+  &:hover {
+    transition: 0.4s;
+  }
+  &:not(:hover){
+    transition: 0.4s;
+    transform: translateY(8px);
+  }
+
+  &__top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $tile-border-radius;
+    width: 100%;
+    height: 100%;
+    background-color: $lightgray;
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    transform: rotateY(0deg);
+  }
+  &__bottom {
+    border-radius: $tile-border-radius;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(-180deg);
+  }
+  &__hint {
+    display: none;
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    &_active {
+      display: block;
+    }
+  }
+  &__flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .vertical.tile {
+    position: relative;
+  }
+  .vertical .tile__bottom {
+    transform: rotateX(180deg);
+  }
+}
+
+
+
