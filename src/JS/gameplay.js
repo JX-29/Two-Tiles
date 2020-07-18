@@ -99,7 +99,7 @@ function cleanGlobalVar() {
     selectedTile1 = undefined;
     selectedTile2 = undefined;
     selectedTileColor1 = undefined;
-    selectedTileColor1 = undefined;
+    selectedTileColor2 = undefined;
 }
 
 //Coincidence check function. If the tiles are matched, the function hides them. If they differ, it turns over. Cleans up global variables
