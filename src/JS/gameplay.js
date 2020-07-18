@@ -159,7 +159,7 @@ tiles.forEach((tile) => {
             if (gameStarted) {
                 //if you click on an already open tile, it will close
                 //checking for the presence of the selected pair at the moment
-                if (selectedTile1 == event.currentTarget) {
+                if (selectedTile1 == event.currentTarget && !tilesSelected) {
                     event.currentTarget.classList.toggle('tile_selected')
                     selectedTile1 = undefined
                     event.currentTarget.childNodes.forEach((node) => {
@@ -167,7 +167,7 @@ tiles.forEach((tile) => {
                             selectedTileColor1 = undefined;
                         };
                     });
-                } else if (selectedTile2 == event.currentTarget) {
+                } else if (selectedTile2 == event.currentTarget && !tilesSelected) {
                     event.currentTarget.classList.toggle('tile_selected');
                     selectedTile2 = undefined;
                     event.currentTarget.childNodes.forEach((node) => {
