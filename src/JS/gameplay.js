@@ -110,10 +110,12 @@ function complianceCheck() {
         selectedTile1.classList.add('tile_disappear')
         selectedTile2.classList.add('tile_disappear')
         cleanGlobalVar()
+        tilesSelected = false;
     } else {
         selectedTile2.classList.remove('tile_selected')
         selectedTile1.classList.remove('tile_selected')
         cleanGlobalVar()
+        tilesSelected = false;
     }
 
 }
@@ -157,16 +159,16 @@ tiles.forEach((tile) => {
             if (gameStarted) {
                 //if you click on an already open tile, it will close
                 //checking for the presence of the selected pair at the moment
-                if (selectedTile1 == event.currentTarget && !tilesSelected) {
-                    event.currentTarget.classList.add('tile_selected')
+                if (selectedTile1 == event.currentTarget) {
+                    event.currentTarget.classList.toggle('tile_selected')
                     selectedTile1 = undefined
                     event.currentTarget.childNodes.forEach((node) => {
                         if (node.classList == 'tile__bottom') {
                             selectedTileColor1 = undefined;
                         };
                     });
-                } else if (selectedTile2 == event.currentTarget && !tilesSelected ) {
-                    event.currentTarget.classList.add('tile_selected');
+                } else if (selectedTile2 == event.currentTarget) {
+                    event.currentTarget.classList.toggle('tile_selected');
                     selectedTile2 = undefined;
                     event.currentTarget.childNodes.forEach((node) => {
                         if (node.classList == 'tile__bottom') {
@@ -174,7 +176,7 @@ tiles.forEach((tile) => {
                         };
                     });
                     //if the first tile is not yet open, it will open it by clicking
-                } else if (selectedTile1 == undefined && selectedTile2 != event.currentTarget) {
+                } else if (selectedTile1 == undefined && selectedTile1 != event.currentTarget) {
                     event.currentTarget.classList.toggle('tile_selected');
                     selectedTile1 = event.currentTarget;
                     event.currentTarget.childNodes.forEach((node) => {
