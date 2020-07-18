@@ -29,6 +29,8 @@ let selectedTileColor2;
 
 //Until the Start button is pressed, tiles cannot be flipped
 let gameStarted = false;
+//a variable to determine if two tiles are currently open. Solves the bug of three tiles, when during the delay you can click on the selected tile, deselect it, and at that moment select another. The tile selected at the time of the delay does not turn over and violates the rules of the game
+let tilesSelected = false;
 
 
 //Doubles the array once
@@ -154,7 +156,8 @@ tiles.forEach((tile) => {
         //if the player pressed the start button. Until then, tiles cannot be flipped
             if (gameStarted) {
                 //if you click on an already open tile, it will close
-                if (selectedTile1 == event.currentTarget) {
+                //checking for the presence of the selected pair at the moment
+                if (selectedTile1 == event.currentTarget && !tilesSelected) {
                     event.currentTarget.classList.add('tile_selected')
                     selectedTile1 = undefined
                     event.currentTarget.childNodes.forEach((node) => {
@@ -162,7 +165,7 @@ tiles.forEach((tile) => {
                             selectedTileColor1 = undefined;
                         };
                     });
-                } else if (selectedTile2 == event.currentTarget) {
+                } else if (selectedTile2 == event.currentTarget && !tilesSelected ) {
                     event.currentTarget.classList.add('tile_selected');
                     selectedTile2 = undefined;
                     event.currentTarget.childNodes.forEach((node) => {
@@ -171,7 +174,7 @@ tiles.forEach((tile) => {
                         };
                     });
                     //if the first tile is not yet open, it will open it by clicking
-                } else if (selectedTile1 == undefined) {
+                } else if (selectedTile1 == undefined && selectedTile2 != event.currentTarget) {
                     event.currentTarget.classList.toggle('tile_selected');
                     selectedTile1 = event.currentTarget;
                     event.currentTarget.childNodes.forEach((node) => {
@@ -188,6 +191,8 @@ tiles.forEach((tile) => {
                             selectedTileColor2 = node.style.backgroundColor;
                         };
                     });
+                    //prohibits the selection of new tiles until the previous ones disappear
+                    tilesSelected = true;
                     //a second delay to show the color of both tiles. After the delay, the tiles disappear if the colors match or flip if the colors are different
                     setTimeout(complianceCheck,1000);
                 };
