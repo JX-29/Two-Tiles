@@ -41,7 +41,7 @@ function shuffleArr(arr) {
     arr.sort(() => Math.random() - 0.5);
 }
 
-//Assigns a color to the hint and back of the tile
+//Assigns a color to the hint and back of the tilegit reset --hard HEAD hash
 function bindColorToTile(colors) {
     tiles.forEach((tile, i) => {
         tile.childNodes.forEach((node) => {
